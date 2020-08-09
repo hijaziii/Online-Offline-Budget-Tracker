@@ -4,9 +4,10 @@ const FILES_TO_CACHE = [
   "/icons/icon-192x192.png",
   "/icons/icon-512x512.png",
   "/styles.css",
-  // "/dist/app.bundle.js",
+  "/db.js",
   "/index.js",
-  "/db.js"
+  "/manifest.webmanifest"
+  
 ];
 
 
@@ -45,7 +46,7 @@ self.addEventListener("activate", function(evt) {
 
 // fetch
 self.addEventListener("fetch", function(evt) {
-  if (evt.request.url.includes("/")) {
+  if (evt.request.url.includes("/api")) {
     evt.respondWith(
       caches.open(DATA_CACHE_NAME).then(cache => {
         return fetch(evt.request)
